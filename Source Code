@@ -1,0 +1,1899 @@
+#include<conio.h>
+#include<graphics.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<process.h>
+#include<dos.h>
+#include<string.h>
+#include<time.h>
+#include<fstream.h>
+
+int n=0;
+int v=0;
+char t[20];
+char us[30];            		  //Global variable declared can be used in all functions.
+char f[20],b[20],g[20],a[20];             //Global variable declared can be used in all functions.
+char e[20]="abcd1234";          	  //Global variable declaration		      //Global variable declaration
+char w[20]="gomyway";         		  //Global variable declaration
+void mainmenu();			  // here we declare a function also can say we have
+void book(int i);        		  // done prototyping of functions.
+void username();            //prototyping
+void deleted();             //prototyping
+void time();  	            //prototyping
+void nameslist();           //prototyping
+void cusdetails();         //prototyping
+void loading();            //prototyping
+void cusdetails2(int i);   //prototyping
+void flightdetails();      //prototyping
+void printbill();          //prototyping
+void search();         	   //prototyping
+void luggage();       	   //prototyping
+void date1();		   //prototyping
+void day();                //prototyping
+void newpass();            //prototyping
+void settings();           //prototyping
+void username2();          //prototyping
+void password2();          //prototyping
+void abtpro();             //prototyping
+void backtomain();         //prototyping
+void select();	           //prototyping
+void registration(int d);  //prototyping
+void acinfo();		   //prototyping
+void delete2();	           //prototyping
+/*void abtpro3();          //prototyping
+void abtpro4();            //prototyping
+void abtpro5();            //prototyping           */
+
+struct Date                //declaring a structure for date
+{
+	int d,m,y;
+}d;
+
+struct flight
+{
+	int flight_no;
+	char depart[30],arrive[30];
+	char name[30],class1[30],address[30],searchn[30],flight_name[30],time1[7],time2[7];
+	Date Train_date,Train_date1,Train_date2;
+	int hr,min;
+	int runway_no, no_of_seats;                      //declare structue for multiple variables
+	char boing_type[30];
+	float fees;
+	char type_trip,mail_id[30],phone_no[15],house_no[10],street_name[30],city[18],pin_code[7],locality[20],pass_num[20];
+}c;
+
+struct reg
+{
+	char name1[30],name2[30],email[50],sex[3],secq[20];
+}r[30];
+
+struct search
+{
+	char searchn[30];     //declairing structure for search variable
+}m[30];
+
+struct place
+{
+	char depart[20],arrive[20];
+	char flight[20],time[20][20];          //declairing structure  for place function
+
+}p[20];
+
+struct ticket
+{
+	char ticket_no[10];     //declaring structure for ticket number
+}q[10];
+
+struct date1
+{
+  int da_year;     /* current year */
+  char da_day;     /* day of the month */
+  char da_mon;     /* month (1 = Jan) */
+};
+struct time1
+{
+  unsigned char  ti_min;   /* minutes */
+  unsigned char  ti_hour;  /* hours */
+  unsigned char  ti_sec;   /* seconds */
+};
+
+
+
+void place()                            //defining a function with place
+{
+	strcpy(p[0].depart,"Kolkata");    //copies the given accepted string
+	strcpy(p[0].arrive,"Delhi");      //copies the given accepted string
+	strcpy(p[1].depart,"Kolkata");    //copies the given accepted string
+	strcpy(p[1].arrive,"Mumbai");     //copies the given accepted string
+	strcpy(p[2].depart,"Kolkata");    //copies the given accepted string
+	strcpy(p[2].arrive,"Chennai");    //copies the given accepted string
+	strcpy(p[3].depart,"Delhi");      //copies the given accepted string
+	strcpy(p[3].arrive,"Kolkata");    //copies the given accepted string
+	strcpy(p[4].depart,"Delhi");      //copies the given accepted string
+	strcpy(p[4].arrive,"Mumbai");     //copies the given accepted string
+	strcpy(p[5].depart,"Delhi");      //copies the given accepted string
+	strcpy(p[5].arrive,"Chennai");    //copies the given accepted string
+	strcpy(p[6].depart,"Mumbai");     //copies the given accepted string
+	strcpy(p[6].arrive,"Delhi");      //copies the given accepted string
+	strcpy(p[7].depart,"Mumbai");     //copies the given accepted string
+	strcpy(p[7].arrive,"Kolkata");    //copies the given accepted string
+	strcpy(p[8].depart,"Mumbai");     //copies the given accepted string
+	strcpy(p[8].arrive,"Chennai");    //copies the given accepted string
+	strcpy(p[9].depart,"Chennai");    //copies the given accepted string
+	strcpy(p[9].arrive,"Kolkata");    //copies the given accepted string
+	strcpy(p[10].depart,"Chennai");   //copies the given accepted string
+	strcpy(p[10].arrive,"Mumbai");    //copies the given accepted string
+	strcpy(p[11].depart,"Chennai");   //copies the given accepted string
+	strcpy(p[11].arrive,"Delhi");     //copies the given accepted string
+	strcpy(p[0].flight,"INDIGO AIRLINES");     //copies the given accepted string
+	strcpy(p[1].flight,"SPICEJET");    //copies the given accepted string
+	strcpy(p[2].flight,"AIRINDIA");    //copies the given accepted string
+	strcpy(p[3].flight,"JET AIRWAYS"); //copies the given accepted string
+	strcpy(p[4].flight,"INDIAN AIRWAYS");    //copies the given accepted string
+	strcpy(p[0].time[0],"00:00");      //copies the given accepted string
+	strcpy(p[0].time[1],"02:30");      //copies the given accepted string
+	strcpy(p[1].time[0],"01:00");      //copies the given accepted string
+	strcpy(p[1].time[1],"03:30");      //copies the given accepted string
+	strcpy(p[2].time[0],"04:00");      //copies the given accepted string
+	strcpy(p[2].time[1],"06:30");      //copies the given accepted string
+	strcpy(p[3].time[0],"07:00");      //copies the given accepted string
+	strcpy(p[3].time[1],"09:30");      //copies the given accepted string
+	strcpy(p[4].time[0],"08:10");      //copies the given accepted string
+	strcpy(p[4].time[1],"10:40");      //copies the given accepted string
+	strcpy(p[5].time[0],"10:20");      //copies the given accepted string
+	strcpy(p[5].time[1],"12:50");      //copies the given accepted string
+	strcpy(p[6].time[0],"13:15");      //copies the given accepted string
+	strcpy(p[6].time[1],"15:45");	   //copies the given accepted string
+	strcpy(p[7].time[0],"14:00");      //copies the given accepted string
+	strcpy(p[7].time[1],"16:30");      //copies the given accepted string
+	strcpy(p[8].time[0],"15:20");      //copies the given accepted string
+	strcpy(p[8].time[1],"17:50");      //copies the given accepted string
+	strcpy(p[9].time[0],"18:40");      //copies the given accepted string
+	strcpy(p[9].time[1],"21:10");      //copies the given accepted string
+	strcpy(p[10].time[0],"22:10");     //copies the given accepted string
+	strcpy(p[10].time[1],"00:40");     //copies the given accepted string
+	strcpy(q[0].ticket_no,"WWX132O");  //copies the given accepted string
+	strcpy(q[1].ticket_no,"M3XSD23");  //copies the given accepted string
+	strcpy(q[2].ticket_no,"DSXMA84");  //copies the given accepted string
+	strcpy(q[3].ticket_no,"QWER345");  //copies the given accepted string
+	strcpy(q[4].ticket_no,"ERBNHJ9");  //copies the given accepted string
+	strcpy(q[5].ticket_no,"HXLDYV6");  //copies the given accepted string
+	strcpy(q[6].ticket_no,"2BD8ND0");  //copies the given accepted string
+	strcpy(q[7].ticket_no,"WERTGH6");  //copies the given accepted string
+	strcpy(q[8].ticket_no,"QDFGH39");  //copies the given accepted string
+	strcpy(q[9].ticket_no,"BCWKS69");  //copies the given accepted string
+
+
+}                                          //closes the function
+void date1()
+{
+	struct date d;
+	getdate(&d);
+	gotoxy(70,34);
+	printf("%d/%d/%d",d.da_day,d.da_mon,d.da_year);
+}
+
+void main_menu()                 //defining a function with name main menu
+{
+	int h=1,y=132;     //declaring variables and defining them to use in the following function
+	char ch;
+	int color[9] = {4,14,14,14,14,14,14,14,14};
+	cleardevice();	   //clears the screen
+
+
+	do{
+		setcolor(BLUE);
+		for(int z=0;z<20;z++)
+		{
+		circle(getmaxx()/2,getmaxy()/2,220+z);
+		}
+		sound(200);	       //beep sound on every press
+		settextstyle(1,0,4);
+		setcolor(1);
+		outtextxy(230,85," MAIN MENU ");
+		settextstyle(1,0,2);
+		setcolor(color[0]);
+		outtextxy(230,140,"Book A Flight");
+		setcolor(color[1]);
+		outtextxy(230,170,"Display Bookings");
+		setcolor(color[2]);
+		outtextxy(230,200,"Flight search");       //main menu
+		setcolor(color[3]);
+		outtextxy(230,230,"Names list");
+		setcolor(color[4]);
+		outtextxy(230,260,"Print Bill");
+		setcolor(color[5]);
+		outtextxy(230,290,"Search Details");
+		setcolor(color[6]);
+		outtextxy(230,320,"Delete Records");
+		setcolor(color[7]);
+		outtextxy(230,350,"Settings");
+		setcolor(color[8]);
+		outtextxy(230,380,"Exit");
+		nosound();
+		ch=getch();                            //gets a character
+		color[h - 1] = 14;
+		if(ch==80)
+		{
+			h++;                           //if upward arrow key pressed  the cursor will go up by 30 coordinates
+			y+=30;
+		}
+
+		else if(ch==72)
+		{
+			h--;
+			y-=30;                        //if down arrow key pressed  the cursor will go down by 30 coordinates
+		}
+
+		if(h>9)
+		{
+			h=1;                     //after reaching to 7th option automatically will go to 1st option if down arrow key is pressed
+			y=132;
+
+		}
+		else if(h<1)
+		{
+			h=9;                     //after reaching to 1st option automatically will go to 7th option if up arrow key is pressed
+			y=372;
+		}
+		color[h - 1] = 4;
+		if(ch==13)            //when enter key is pressed switch cases
+		{
+		switch(h)       //switch cases
+		{
+		 int i;                //variable declaration
+		 case 1:book(n++);     //function to book a flight
+			break;
+		 case 2:cusdetails();  //function to fill up details of customer
+			break;
+		 case 3:flightdetails(); //search for flights
+			break;
+		 case 4:nameslist();    //display registered names
+			break;
+		 case 5:printbill();    //prints the ball of last registered customer
+			break;
+		 case 6:search();       //search information of registered candidates
+			break;
+		 case 7:deleted();      // delete detils of passenger
+			break;
+		 case 8:settings();
+			break;		//to change personal settings
+		 case 9:exit(0);        //exits from the programme
+		 }
+	}}while(ch!=13||h!=9);   //loop continues till choice is 8 or till enter key is pressed
+
+}
+
+
+void display()         //name and return type of function
+{
+	cleardevice();    //clears the screen
+	setcolor(WHITE);  //sets text color to white
+	setbkcolor(BLACK);   //sets background color to black
+	settextstyle(1,0,8);    //sets the font,direction and size of text
+	outtextxy(120,125,"Welcome to");     //text to be displayed
+	settextstyle(1,0,8);
+	outtextxy(155,195,"GOMYWAY");
+	delay(3000);     //wait for 2 seconds
+	main_menu();
+
+}
+
+void flightdetails()             //name and return type of function
+	{
+		cleardevice();
+		ofstream fout;
+		fout.open("flightdetails1.dat",ios::binary|ios::app);
+		{
+		char ch;        //declaration of variables
+		ch=75;          //assigning an initial value to declared variable
+		do
+		{
+			cleardevice();
+			settextstyle(8,0,2);
+			outtextxy(30,435,"(Press > to fill flight details)");
+			outtextxy(382,435,"(Press ESC to go back)");
+		if(ch==75)
+		{
+		randomize();               //calls random function (definition in <stdlib.h>)
+		settextstyle(10,0,4);
+		setcolor(LIGHTBLUE);
+		outtextxy(160,30,"Flight Details"); //text to be displayed
+		settextstyle(3,0,3);
+		outtextxy(220,100,"(Domestic Flights)");
+		gotoxy(0,10);     //goes to coordinates x=0,y=10
+		gotoxy(10,10);  //goes to coordinates x=10,y=10
+		setcolor(WHITE);
+		cout<<"Departure date--";
+		gotoxy(10,11);
+		cout<<"Date: ";
+		cin>>d.d;         //inputs the value and stores in variable d.d
+		gotoxy(25,11);
+		cout<<"Month: ";
+		cin>>d.m;         //inputs the value and stores in variable d.m
+		gotoxy(41,11);
+		cout<<"Year: ";
+		cin>>d.y;         //inputs the value and stores in variable d.y
+		gotoxy(10,13);
+		cout<<"Departure city: ";
+		gets(c.depart);     //gets a string and stores in variable depart
+		gotoxy(40,13);
+		cout<<"Arrival city: ";
+		gets(c.arrive);     //gets a string and stores in variable arrive
+		gotoxy(5,15);
+		int cnt=0;
+		for(int j=0;j<=11;j++)  //counter
+			{
+				if(strcmp(c.depart,p[j].depart)==0 && strcmp(c.arrive,p[j].arrive)==0)      //comparing 2 strings with characters stored in above string
+					{
+						cnt++;   //increases the value of variable cnt by 1 if the condition above is true
+						break;
+					}
+					else
+						continue; //when condition is not true then programme will go on normally
+			}
+		if(cnt==0)
+		{
+		gotoxy(350,200);
+		cout<<"Desired Type Not Available!";
+		}
+		else
+		{
+			gotoxy(0,15);
+			cout<<"FLIGHT NAME";
+			gotoxy(27,15);
+			cout<<"From";
+			gotoxy(46,15);
+			cout<<"To";
+			gotoxy(57,15);
+			cout<<"Departure";
+			gotoxy(70,15);
+			cout<<"Arrival";
+			setcolor(YELLOW);
+			rectangle(0,215,getmaxx(),250);  //builds a rectangle according to desired coordinates
+			rectangle(0,215,150,400);
+			rectangle(150,215,300,400);
+			rectangle(300,215,430,400);
+			rectangle(430,215,530,400);
+			rectangle(530,215,getmaxx(),400);
+			int y=17;
+			int i,j;
+			for(int v=1; v<=5; v++,y+=2)         //counter
+			{
+				i=random(5);               //will display assigned data randomlly
+				j=random(11);
+				setcolor(WHITE);
+				gotoxy(25,y);
+				cout<<c.depart;
+				gotoxy(41,y);
+				cout<<c.arrive;
+				gotoxy(4,y);
+				cout<<p[i].flight;
+				gotoxy(60,y);
+				cout<<p[j].time[0];
+				gotoxy(71,y);
+				cout<<p[j].time[1];
+
+				}
+			}
+		}
+
+		if(ch==77)  //if left arrow key is pressed
+		{
+		int i;
+		settextstyle(10,0,4);
+		setcolor(LIGHTBLUE);
+		outtextxy(160,30,"Flight Details");
+		settextstyle(3,0,3);
+		outtextxy(220,100,"(Domestic Flights)");
+		gotoxy(0,10);
+		gotoxy(10,10);
+		cout<<"Departure date--";
+		gotoxy(10,11);
+		cout<<"Date: ";
+		gotoxy(16,11);
+		cout<<d.d;
+		gotoxy(25,11);
+		cout<<"Month: ";
+		gotoxy(32,11);
+		cout<<d.m;
+		gotoxy(41,11);
+		cout<<"Year: ";
+		gotoxy(47,11);
+		cout<<d.y;
+		gotoxy(10,13);
+		cout<<"Departure city: ";
+		gotoxy(26,13);
+		cout<<c.depart;
+		gotoxy(40,13);
+		cout<<"Arrival city: ";
+		gotoxy(54,13);
+		cout<<c.arrive;
+		setcolor(YELLOW);
+		rectangle(186,292,448,368);
+		setcolor(WHITE);
+		gotoxy(26,20);
+		cout<<"Flight Name: ";
+		gotoxy(39,20);
+		gets(c.flight_name);    //displays the latest content written in the desired variable
+		gotoxy(28,21);
+		cout<<"Departure: ";
+		gotoxy(39,21);
+		gets(c.time1);
+		gotoxy(31,22);
+		cout<<"Arrive: ";
+		gotoxy(39,22);
+		gets(c.time2);
+		}
+			ch=getch();
+			}while(ch!=27&&ch!=13);    //loop will terminate only when esc key or enter key is pressed
+		}
+		fout.write((char*)&c,sizeof(c));
+		fout.close();
+	}
+
+
+void deleted()
+{
+	cleardevice();
+	setcolor(RED);
+	char name[30];
+	for(int k=0;k<20;k++)
+	{
+		rectangle(20+k,20+k,600+k,445+k);
+	}
+	setcolor(LIGHTBLUE);
+	rectangle(235,220,400,243);
+	settextstyle(8,0,5);
+	setcolor(YELLOW);
+	outtextxy(140,41,"DELETE RECORDS");
+	fstream fin;
+	flight c;
+	fin.open("flightdetails1.dat",ios::binary|ios::in);
+	gotoxy(25,11);
+	setcolor(WHITE);
+	cout<<"Name of the customer of which";
+	gotoxy(25,12);
+	cout<<"you want to delete the details..!";
+	gotoxy(37,15);
+	gets(name);
+	int cnt=0;
+
+	while((fin.read((char*)&c,sizeof(c))))
+	{
+		if(strcmp(c.name,name)==0)
+		{
+			cnt=1;
+			break;
+		}
+	}
+	if(cnt==0)
+	{
+		gotoxy(30,20);
+		cout<<"Desired Name Not Found..!!";
+	}
+	else
+	{
+		setcolor(LIGHTMAGENTA);
+		for(k=0;k<6;k++)
+		{
+			rectangle(155+k,270+k,480+k,370+k);
+		}
+		gotoxy(23,19);
+		cout<<"Are you sure you want to delete all";
+		gotoxy(24,20);
+		cout<<"the records related to '"<<name<<"' ?";
+
+		int h=1;     //declaring variables and defining them to use in the following function
+		char ch=75;
+
+		do{
+		settextstyle(3,0,3);
+		setcolor(YELLOW);
+		settextstyle(6,0,2);
+		outtextxy(240,325,"YES");
+		outtextxy(340,325,"NO");
+
+		if(ch==77 && h==2)
+		{
+			setcolor(BLACK);
+			outtextxy(320,325,"þ");
+			setcolor(CYAN);
+			outtextxy(230,325,"þ");
+			h=1;
+		}
+
+		else if(ch==77 && h==1)
+		{
+			setcolor(CYAN);
+			outtextxy(320,325,"þ");
+			setcolor(BLACK);
+			outtextxy(230,325,"þ");
+			h=2;
+		}
+		else if(ch==75 && h==1)
+		{
+			setcolor(CYAN);
+			outtextxy(320,325,"þ");
+			setcolor(BLACK);
+			outtextxy(230,325,"þ");
+			h=2;
+		}
+		else if(ch==75 && h==2)
+		{
+			setcolor(BLACK);
+			outtextxy(320,325,"þ");
+			setcolor(CYAN);
+			outtextxy(230,325,"þ");
+			h=1;
+		}
+		ch=getch();
+		}while(ch!=13);
+	   //when enter key is pressed switch cases
+
+		switch(h)              //switch cases
+		{
+		case 1: fstream fout;
+			fout.open("temp.dat",ios::out|ios::binary);
+			flight f;
+			while(fin.read((char*)&f,sizeof(f)))
+			{
+			if(f.name!=name)
+			fout.write((char*)&f,sizeof(f));
+			}
+			fout.close();
+			fin.close();
+			remove("flightdetails1.dat");
+			rename("temp.dat","flightdetails1.dat");
+			gotoxy(23,25);
+			cout<<"file deleted successfully";
+			delay(1000);
+			break;
+		case 2: gotoxy(20,25);
+			cout<<"Press 'ENTER' to go back to menu";
+			delay(1000);
+		}
+		}
+
+
+	getch();
+}
+
+
+void username()                 //name,return type of the function and parameters involved
+{
+	int z=0;
+	do{
+		cleardevice();
+		setcolor(WHITE);
+		for(int k=0;k<20;k++)
+		{
+			rectangle(20+k,20+k,600+k,445+k);
+		}
+		gotoxy(33,13);
+		cout<<"Username: ";
+		gets(a);              //gets a string and stores in a
+		gotoxy(33,15);
+		cout<<"Password: ";   //gets a string and stores in b
+		char ch,x=43;
+		int j=-1;
+		do
+		{
+			gotoxy(x,15);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+			cout<<'*';
+			b[++j]=ch;
+			x++;
+		}while(1);
+		b[++j]='\0';
+		if(strcmp(a,w)!=0||strcmp(b,e)!=0)   //compares the string for username and password which can only be changed by programmer
+		{
+		for(int i=2;i>=1;i--)  //countdown for wrong password entered
+		{
+		sound(300);           //beep sound after every single second
+		gotoxy(25,17);
+		cout<<"Incorrect password or username";   //if string is not compared
+		gotoxy(29,18);
+		cout<<"Please try again in "<<i;
+		delay(300);
+		nosound();
+		delay(700);
+		}
+		delay(100);
+		}
+		z++;
+		if(z==3)
+		{
+			gotoxy(30,21);
+			cout<<"FORGOT PASSWORD ?";
+			gotoxy(30,23);
+			cout<<"Create new password: press 'p'";
+			gotoxy(30,25);
+			cout<<"To continue: press 'n'";
+			char gh;
+			gh=getch();
+		  //	do{
+			if(gh=='p')
+			{
+				newpass();
+			}
+			else if(gh=='n')
+			{
+				 z=2;
+			}
+	       /*		 else
+			{
+				for(int u=1;u<=3;u++)
+				{
+					sound(600);
+					gotoxy(30,26);
+					cout<<"INVALID KEY";
+					delay(500);
+					nosound();
+					gotoxy(30,26);
+					cout<<"          ";
+					delay(500);
+				}
+			}
+			}while(gh=='p'||gh=='n');       */
+
+		}
+
+
+	}while(strcmp(b,e)!=0||strcmp(a,w)!=0); //loop runs until strings are properly compared
+							     //redefines space to write username and password
+
+	for(int i=0;i<5;i++)
+	{
+	sound(400);
+	delay(50);
+	nosound();
+	delay(50);
+	}
+	display();     //calls the display function
+}
+void newpass()
+{
+	cleardevice();
+	setcolor(WHITE);
+	for(int p=0;p<=4;p++)
+	{
+		line(250,80+p,395,80+p);
+	}
+	gotoxy(33,5);
+	cout<<"PASSWORD SETTINGS";
+	setcolor(LIGHTRED);
+	for(int k=0;k<20;k++)
+	{
+		rectangle(20+k,20+k,600+k,445+k);
+	}
+	setcolor(WHITE);
+	do{
+	gotoxy(30,10);
+	cout<<"Username: ";
+	gets(a);              //gets a string and stores in c
+	if(strcmp(a,w)!=0)
+	{
+		gotoxy(50,10);
+		cout<<"Invalid Username...!!" ;
+		delay(1000);
+		gotoxy(50,10);
+		cout<<"                     ";
+		gotoxy(39,10);
+		cout<<"         ";
+	}
+	}while(strcmp(a,w)!=0);
+	gotoxy(11,12);
+	cout<<"Which is your favourite book: ";
+	 char ch,x=40;
+	 int j=-1;
+		do{
+			x=41;
+			j=-1;
+		do
+		{
+
+			gotoxy(x,12);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+			cout<<'*';
+			f[++j]=ch;
+			x++;
+		}while(1);
+		f[++j]='\0';
+		if(strcmp(f,t)!=0)
+		{
+			gotoxy(50,12);
+			cout<<"Invalid Answer...!!" ;
+			delay(1000);
+			gotoxy(50,12);
+			cout<<"                      ";
+			gotoxy(40,12);
+			cout<<"           ";
+
+		}
+		}while(strcmp(f,t)!=0);
+	gotoxy(26,14);
+	cout<<"New Password: ";
+		int l=-1;
+		x=40;
+		do
+		{
+			gotoxy(x,14);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+			cout<<'*';
+			e[++l]=ch;
+			x++;
+		}while(1);
+		e[++l]='\0';
+		strcpy(b,e);
+		gotoxy(28,18);
+		cout<<"Password changed successfully..!!";
+		delay(1000);
+}
+
+void settings()
+{
+	int h=1,y=145;     //declaring variables and defining them to use in the following function
+	char ch;
+	int color[9] = {4,14,14,14};
+	cleardevice();     //clears the screen
+	setcolor(LIGHTGREEN);
+	for(int z=0;z<=20;z++)
+	{
+		circle(getmaxx()/2,getmaxy()/2,165+z);
+	}
+	do{
+	sound(500);              //beep sound on every press
+	settextstyle(3,0,3);
+	setcolor(RED);
+	settextstyle(1,0,3);
+	setcolor(color[0]);
+	outtextxy(220,145,"Change Username");
+	setcolor(color[1]);
+	outtextxy(220,185,"Change Password");
+	setcolor(color[2]);
+	outtextxy(220,225,"Account Information");
+	setcolor(color[3]);
+	outtextxy(220,265,"Back To Menu");
+	nosound();
+	ch=getch();                            //gets a character
+	color[h-1] = 14;
+	if(ch==80)
+	{
+		h++;                           //if upward arrow key pressed  the cursor will go up by 30 coordinates
+		y+=40;
+	}
+
+	else if(ch==72)
+	{
+		h--;
+		y-=40;                        //if down arrow key pressed  the cursor will go down by 30 coordinates
+	}
+
+		if(h>4)
+		{
+			h=1;                     //after reaching to 7th option automatically will go to 1st option if down arrow key is pressed
+			y=145;
+
+		}
+		else if(h<1)
+		{
+			h=4;                     //after reaching to 1st option automatically will go to 7th option if up arrow key is pressed
+			y=265;
+		}
+		color[h-1] = 4;
+
+		if(ch==13)            //when enter key is pressed switch cases
+		{
+		switch(h)       //switch cases
+		{
+		 case 1:username2();     //function to reset username
+			break;
+		 case 2:password2();  //function to reset password
+			break;
+		 case 3:acinfo();      //tells the user information
+			break;
+	       }
+
+	      }}while(ch!=13||h!=4);   //loop continues till choice is 4 or till enter key is pressed
+	      cleardevice();
+}
+void username2()
+{
+	cleardevice();
+	setcolor(WHITE);
+	for(int p=0;p<=4;p++)
+	{
+		line(250,80+p,395,80+p);
+	}
+	gotoxy(33,5);
+	cout<<"USERNAME SETTINGS";
+	setcolor(LIGHTMAGENTA);
+	for(int k=0;k<20;k++)
+	{
+		rectangle(20+k,20+k,600+k,445+k);
+	}
+	setcolor(WHITE);
+	do{
+	gotoxy(22,10);
+	cout<<"Current Username: ";
+	gets(a);              //gets a string and stores in c
+	if(strcmp(a,w)!=0)
+	{
+		gotoxy(50,10);
+		cout<<"Invalid Username...!!" ;
+		delay(1000);
+		gotoxy(50,10);
+		cout<<"                     ";
+		gotoxy(39,10);
+		cout<<"         ";
+	}
+	}while(strcmp(a,w)!=0);
+	gotoxy(22,12);
+	cout<<"Current Password: ";
+	 char ch,x=40;
+	 int j=-1;
+		do{
+			x=40;
+			j=-1;
+		do
+		{
+
+			gotoxy(x,12);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+			cout<<'*';
+			f[++j]=ch;
+			x++;
+		}while(1);
+		f[++j]='\0';
+		if(strcmp(f,e)!=0)
+		{
+			gotoxy(50,12);
+			cout<<"Invalid Password...!!" ;
+			delay(1000);
+			gotoxy(50,12);
+			cout<<"                      ";
+			gotoxy(40,12);
+			cout<<"           ";
+
+		}
+		}while(strcmp(f,e)!=0);
+	gotoxy(26,14);
+	cout<<"New Username: ";
+	gets(w);
+	strcpy(a,w);
+	gotoxy(23,17);
+	cout<<"Your Username has been updated...!!";
+	delay(1500);
+}
+void password2()
+{
+	cleardevice();
+	setcolor(WHITE);
+	for(int p=0;p<=4;p++)
+	{
+		line(250,80+p,395,80+p);
+	}
+	gotoxy(33,5);
+	cout<<"PASSWORD SETTINGS";
+	setcolor(CYAN);
+	for(int k=0;k<20;k++)
+	{
+		rectangle(20+k,20+k,600+k,445+k);
+	}
+	setcolor(WHITE);
+	do{
+	gotoxy(30,10);
+	cout<<"Username: ";
+	gets(a);              //gets a string and stores in c
+	if(strcmp(a,w)!=0)
+	{
+		gotoxy(50,10);
+		cout<<"Invalid Username...!!" ;
+		delay(1000);
+		gotoxy(50,10);
+		cout<<"                     ";
+		gotoxy(39,10);
+		cout<<"         ";
+	}
+	}while(strcmp(a,w)!=0);
+	gotoxy(22,12);
+	cout<<"Current Password: ";
+	 char ch,x=40;
+	 int j=-1;
+		do{
+			x=40;
+			j=-1;
+		do
+		{
+
+			gotoxy(x,12);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+			cout<<'*';
+			f[++j]=ch;
+			x++;
+		}while(1);
+		f[++j]='\0';
+		if(strcmp(f,e)!=0)
+		{
+			gotoxy(50,12);
+			cout<<"Invalid Password...!!" ;
+			delay(1000);
+			gotoxy(50,12);
+			cout<<"                      ";
+			gotoxy(40,12);
+			cout<<"           ";
+
+		}
+		}while(strcmp(f,e)!=0);
+	gotoxy(26,14);
+	cout<<"New Password: ";
+		int l=-1;
+		x=40;
+		do
+		{
+			gotoxy(x,14);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+			cout<<'*';
+			e[++l]=ch;
+			x++;
+		}while(1);
+		e[++l]='\0';
+		strcpy(b,e);
+		gotoxy(23,18);
+		cout<<"Password changed successfully..!!";
+		delay(1500);
+}
+void select()
+{
+	cleardevice();
+	int h=1,y=175;     //declaring variables and defining them to use in the following function
+	char ch;
+
+	do{
+	cleardevice();     //clears the screen
+	setcolor(LIGHTGREEN);
+	for(int z=0;z<=12;z++)
+	{
+		rectangle(120+z,100+z,510+z,350+z);
+	}
+	sound(500);              //beep sound on every press
+	settextstyle(3,0,3);
+	setcolor(RED);
+	outtextxy(180,y,"þ");		//cursor or pointer
+	settextstyle(1,0,3);
+	setcolor(YELLOW);
+	outtextxy(200,175,"Log into your account");
+	outtextxy(200,215,"Create new account");
+	outtextxy(200,255,"Close the programme");
+	nosound();
+	ch=getch();                            //gets a character
+
+	if(ch==80)
+	{
+		h++;                           //if upward arrow key pressed  the cursor will go up by 30 coordinates
+		y+=40;
+	}
+
+	else if(ch==72)
+	{
+		h--;
+		y-=40;                        //if down arrow key pressed  the cursor will go down by 30 coordinates
+	}
+
+		if(h>3)
+		{
+			h=1;                     //after reaching to 7th option automatically will go to 1st option if down arrow key is pressed
+			y=175;
+
+		}
+		else if(h<1)
+		{
+			h=3;                     //after reaching to 1st option automatically will go to 7th option if up arrow key is pressed
+			y=255;
+		}
+
+		if(ch==13)            //when enter key is pressed switch cases
+		{
+		switch(h)       //switch cases
+		{
+		 int i;
+		 case 1:username();     //function to reset username
+			break;
+		 case 2:registration(v++);  //function to reset password
+			break;
+		 case 3:exit(0);         //takes exit from the programme
+		}
+
+	      }}while(ch!=13||h!=3);   //loop continues till choice is 4 or till enter key is pressed
+
+}
+void registration(int i)
+{
+	cleardevice();
+	char pa[30];
+	setcolor(CYAN);
+	for(int k=0;k<20;k++)
+	{
+		rectangle(20+k,20+k,600+k,445+k);
+	}
+	setcolor(WHITE);
+	for(int p=0;p<=4;p++)
+	{
+		line(250,80+p,405,80+p);
+	}
+	char s[10];
+	i++;
+	itoa(i,s,10);  //converts integer to a string
+	i--;
+	gotoxy(33,5);
+	cout<<"CREATE NEW ACCOUNT";
+	gotoxy(35,7);
+	cout<<"(Account no."<<s<<")";
+	gotoxy(27,9);
+	cout<<"First Name:  ";
+	gets(r[i].name1);
+	gotoxy(28,11);
+	cout<<"Last Name:  ";
+	gets(r[i].name2);
+	gotoxy(29,13);
+	cout<<"Email id:  ";
+	gets(r[i].email);
+	gotoxy(26,15);
+	cout<<"Sex (m,f,o):  " ;
+	gotoxy(26,16);
+	cout<<"|m - Male  |";
+	gotoxy(26,17);
+	cout<<"|f - Female|";
+	gotoxy(26,18);
+	cout<<"|o - Others|";
+	gotoxy(40,15);
+	gets(r[i].sex);
+	gotoxy(9,20);
+	cout<<"Which is your favourite book:  ";
+	gotoxy(55,20);
+	cout<<"(secret question)";
+	{
+	char ch,x=40;
+	int j=-1;
+	do
+		{
+			gotoxy(x,20);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+		cout<<'*';
+		t[++j]=ch;
+		x++;
+	}while(1);
+	t[++j]='\0';
+	}
+	gotoxy(29,22);
+	cout<<"Username:  ";
+	gets(us);
+	strcpy(w,us);
+	gotoxy(29,24);
+	cout<<"Password:  ";
+	char ch,x=40;
+	int j=-1;
+	do
+		{
+			gotoxy(x,24);
+			ch=getch();
+			if(ch==13)
+			break;
+			if(ch==8)
+		{
+			clreol();
+			continue;
+		}
+		cout<<'*';
+		pa[++j]=ch;
+		x++;
+	}while(1);
+	pa[++j]='\0';
+	strcpy(e,pa);
+	settextstyle(1,0,2);
+	setcolor(RED);
+	outtextxy(160,400,"Your account has been created..!!");
+	delay(2000);
+}
+void acinfo()
+{
+	cleardevice();
+	char search[50];
+	setcolor(YELLOW);
+	rectangle(282,155,447,178);
+	setcolor(CYAN);
+	for(int k=0;k<20;k++)
+	{
+		rectangle(20+k,20+k,600+k,445+k);
+	}
+	setcolor(WHITE);
+	for(int p=0;p<=4;p++)
+	{
+		line(239,80+p,405,80+p);
+	}
+	gotoxy(32,5);
+	cout<<"ACCOUNT INFORMATION";
+	gotoxy(28,11);
+	setcolor(WHITE);
+	cout<<"SEARCH:";
+	gotoxy(38,11);
+	gets(search);
+	int cnt=0;
+	for(int i=0;i<v;i++)
+	{
+		if(strcmp(r[i].name1,search)==0)
+		{
+			cnt=1;
+			break;
+		}
+	}
+	if(cnt==0)
+	{
+		gotoxy(30,18);
+		cout<<"Desired Account Not Found!";
+		delay(1750);
+	}
+	else if(cnt==1)
+	{
+		gotoxy(27,13);
+		cout<<"First Name:  ";
+		puts(r[i].name1);
+		gotoxy(28,15);
+		cout<<"Last Name:  ";
+		puts(r[i].name2);
+		gotoxy(29,17);
+		cout<<"Email id:  ";
+		puts(r[i].email);
+		gotoxy(26,19);
+		cout<<"Sex (m,f,o):  " ;
+		gotoxy(26,20);
+		cout<<"|m - Male  |";
+		gotoxy(26,21);
+		cout<<"|f - Female|";
+		gotoxy(26,22);
+		cout<<"|o - Others|";
+		gotoxy(40,19);
+		puts(r[i].sex);
+		gotoxy(29,24);
+		cout<<"Username:  ";
+		puts(w);
+		char fh;
+		fh=getch();
+	}
+}
+
+void book(int i)      //function name,return type,parameters
+	{
+	cleardevice();
+	char s[10];
+	i++;
+	settextstyle(8,0,5);
+	itoa(i,s,10);  //converts integer to a string
+	i--;
+	setcolor(LIGHTBLUE);
+	outtextxy(120,49,"FLIGHT BOOKING");
+	outtextxy(505,49,s);
+	setcolor(LIGHTRED);
+	rectangle(71,20,550,105);
+	rectangle(71,105,550,435);
+	rectangle(71,105,300,435);
+	line(71,140,550,140);  //constructs a single line
+	line(71,185,550,185);
+	line(71,243,550,243);
+	line(71,280,550,280);
+	line(71,310,550,310);
+	// ................writing in file..........
+	ofstream fout;
+	fout.open("flightdetails1.dat",ios::binary|ios::app);
+	{
+	gotoxy(17,8);
+	cout<<"Customer name: ";
+	gotoxy(44,8);
+	gets(c.name);
+	gotoxy(17,10);
+	cout<<"Departure place: ";
+	gotoxy(44,10);
+	gets(c.depart);
+	gotoxy(17,11);
+	cout<<"Arrival place: ";
+	gotoxy(44,11);
+	gets(c.arrive);
+
+	do
+	{
+	gotoxy(13,13);
+	cout<<"Number of seats required:";
+	gotoxy(12,14);
+	cout<<"(cannot enter more than 9)";
+	gotoxy(44,13);
+	cin>>c.no_of_seats;
+
+	if(c.no_of_seats>9)           //loop for checking number of seats
+	{
+		for(int l=1;l<=3;l++)
+		{
+			sound(600);
+			gotoxy(23,15);
+			cout<<"ERROR";
+			delay(300);
+			nosound();
+			gotoxy(23,15);
+			cout<<"        ";
+			delay(700);
+		}
+	}
+	gotoxy(44,13);
+	cout<<"     ";
+	gotoxy(44,13);
+	}while(c.no_of_seats>9);
+
+	cout<<c.no_of_seats;
+	gotoxy(11,17);
+	cout<<"CLASS(Business or Economy):";
+	gotoxy(44,17);
+	gets(c.class1);
+	gotoxy(17,19);
+	cout<<"Passport Number:";
+	gotoxy(44,19);
+	gets(c.pass_num);
+	gotoxy(41,21);
+	cout<<"Your Passport No. has";
+	gotoxy(41,22);
+	cout<<"been verified "<<c.name;
+	gotoxy(41,25);
+	cout<<"Pasport No: "<<c.pass_num;
+	gotoxy(12,21);
+	cout<<"Please press ENTER";
+	gotoxy(12,22);
+	cout<<"to fill up more details.";
+	char o;
+	o=getch();
+	if(o==13)
+	{
+	cleardevice();
+	setcolor(LIGHTBLUE);
+	outtextxy(120,49,"FLIGHT BOOKING");
+	outtextxy(505,49,s);
+	setcolor(LIGHTRED);
+	rectangle(71,20,550,105);
+	rectangle(71,105,550,435);
+	rectangle(71,105,300,435);
+	line(71,140,550,140);
+	line(71,185,550,185);
+	line(71,247,550,247);
+	setcolor(WHITE);
+	gotoxy(17,8);
+	cout<<"Customer name: ";
+	gotoxy(44,8);
+	cout<<c.name;
+	gotoxy(17,10);
+	cout<<"Departure place: ";
+	gotoxy(44,10);
+	cout<<c.depart;
+	gotoxy(17,11);
+	cout<<"Arrival place: ";
+	gotoxy(44,11);
+	cout<<c.arrive;
+	gotoxy(11,13);
+	cout<<"Type of trip:--(a or b)";
+	gotoxy(17,14);
+	cout<<"a: One way trip";
+	gotoxy(17,15);
+	cout<<"b: Round trip";
+	gotoxy(44,14);
+	cin>>c.type_trip;
+	if(c.type_trip=='a')
+	{
+		gotoxy(17,17);
+		cout<<"Departure date--";
+		gotoxy(17,18);
+		cout<<"Date: ";
+		gotoxy(44,18);
+		cin>>c.Train_date.d;
+		gotoxy(17,19);
+		cout<<"Month: ";
+		gotoxy(44,19);
+		cin>>c.Train_date.m;
+		gotoxy(17,20);
+		cout<<"Year: ";
+		gotoxy(44,20);
+		cin>>c.Train_date.y;
+		}
+	else
+		{
+			line(71,330,550,330);
+			gotoxy(17,17);
+			cout<<"Departure date--";
+			gotoxy(17,18);
+			cout<<"Date: ";
+			gotoxy(44,18);
+			cin>>c.Train_date.d;
+			gotoxy(17,19);
+			cout<<"Month: ";
+			gotoxy(44,19);
+			cin>>c.Train_date.m;
+			gotoxy(17,20);
+			cout<<"Year: ";
+			gotoxy(44,20);
+			cin>>c.Train_date.y;
+			gotoxy(17,22);
+			cout<<"Return date--";
+			gotoxy(17,23);
+			cout<<"Date: ";
+			gotoxy(44,23);
+			cin>>c.Train_date1.d;
+			gotoxy(17,24);
+			cout<<"Month: ";
+			gotoxy(44,24);
+			cin>>c.Train_date1.m;
+			gotoxy(17,25);
+			cout<<"Year: ";
+			gotoxy(44,25);
+			cin>>c.Train_date1.y;
+		}
+		char ch;
+		settextstyle(3,0,3);
+		setcolor(WHITE);
+		outtextxy(150,437,"PRESS ENTER TO REGISTER");
+		ch=getch();
+		if(ch==13)
+		 {
+			cusdetails2(i);
+
+		 }
+		else
+		{
+		 }
+		settextstyle(1,0,2);
+		{
+		setcolor(RED);
+		outtextxy(210,400,"GOING BACK TO MENU");
+		delay(2000);
+		}
+		main_menu();
+		getch();
+	 }
+	 else
+	 {
+		  }
+	}
+	fout.write((char*)&c,sizeof(c));
+	fout.close();
+	}
+
+void search()
+	{
+	char search[50];
+	cleardevice();
+	setcolor(YELLOW);
+	rectangle(95,25,550,110);
+	rectangle(282,155,447,178);
+	settextstyle(8,0,5);
+	setcolor(LIGHTBLUE);
+	outtextxy(140,41,"SEARCH DETAILS");
+	gotoxy(28,11);
+	setcolor(WHITE);
+	cout<<"SEARCH:";
+	gotoxy(38,11);
+	gets(search);
+	int cnt=0;
+	//*********** reading of file ************
+	ifstream fin;
+	flight c;
+	fin.open("flightdetails1.dat",ios::binary|ios::app);
+	while((fin.read((char*)&c,sizeof(c))))
+	{
+		if(strcmp(c.name,search)==0)
+		{
+			cnt=1;
+			break;
+		}
+		}
+	fin.close();
+	if(cnt==0)
+	{
+		gotoxy(30,20);
+		cout<<"Desired Name Not Found..!!";
+	}
+	else
+	{
+
+		gotoxy(6,15);
+		cout<<"Name";
+		gotoxy(27,15);
+		cout<<"Address";
+		gotoxy(44,15);
+		cout<<"Email";
+		gotoxy(57,15);
+		cout<<"Phone No.";
+		gotoxy(70,15);
+		cout<<"Pincode";
+		setcolor(YELLOW);
+		rectangle(0,215,getmaxx(),250);
+		rectangle(0,215,150,getmaxy());
+		rectangle(150,215,300,getmaxy());
+		rectangle(300,215,430,getmaxy());
+		rectangle(430,215,530,getmaxy());
+		rectangle(530,215,getmaxx(),getmaxy());
+		setcolor(WHITE);
+		gotoxy(4,17);
+		cout<<c.name;
+		gotoxy(26,17);
+		cout<<c.house_no;
+		gotoxy(22,18);
+		cout<<c.locality;
+		gotoxy(26,17);
+		cout<<c.city;
+		gotoxy(39,17);
+		cout<<c.mail_id;
+		gotoxy(56,17);
+		cout<<c.phone_no;
+		gotoxy(70,17);
+		cout<<c.pin_code;
+		}
+      getch();
+
+}
+
+void cusdetails2(int i)
+	{
+			cleardevice();
+			// ................writing in file..........
+			ofstream fout;
+			fout.open("flightdetails1.dat",ios::binary|ios::app);
+			{
+			setcolor(LIGHTRED);
+			rectangle(95,40,550,125);
+			rectangle(95,125,550,390);
+			rectangle(95,125,300,390);
+			settextstyle(8,0,6);
+			setcolor(LIGHTBLUE);
+			outtextxy(133,50,"REGISTRATION");
+			setcolor(WHITE);
+			gotoxy(19,11);
+			cout<<"House No:";
+			gotoxy(19,13);
+			cout<<"Street name:";
+			gotoxy(19,15);
+			cout<<"City:";
+			gotoxy(19,17);
+			cout<<"PinCode:";
+			gotoxy(19,19);
+			cout<<"Locality:";
+			gotoxy(19,21);
+			cout<<"Phone No:";
+			gotoxy(19,23);
+			cout<<"E-mail:";
+			gotoxy(50,11);
+			gets(c.house_no);
+			gotoxy(50,13);
+			gets(c.street_name);
+			gotoxy(50,15);
+			gets(c.city);
+			gotoxy(50,17);
+			gets(c.pin_code);
+			gotoxy(50,19);
+			gets(c.locality);
+			gotoxy(50,21);
+			gets(c.phone_no);
+			gotoxy(50,23);
+			gets(c.mail_id);
+
+		    }
+		    fout.write((char*)&c,sizeof(c));
+		    fout.close();
+	}
+
+void nameslist()
+	{
+	cleardevice();
+	setcolor(YELLOW);
+	rectangle(0,0,getmaxx(),getmaxy());
+	setcolor(LIGHTBLUE);
+	settextstyle(8,0,5);
+	outtextxy(180,25,"Names List");
+	settextstyle(8,0,3);
+	ifstream fin;
+	int y=50;
+	fin.open("flightdetails1.dat",ios::binary);
+	while((fin.read((char*)&c,sizeof(c))))
+	{
+	setcolor(YELLOW);
+	rectangle(0,0,getmaxx(),getmaxy());
+	setcolor(LIGHTBLUE);
+	settextstyle(8,0,5);
+	outtextxy(180,25,"Names List");
+	settextstyle(8,0,3);
+	setcolor(WHITE);
+	y+=30;
+	outtextxy(80,y,c.name);
+	outtextxy(45,y,">>");
+	  }
+
+       getch();
+
+}
+
+void cusdetails()
+{
+	cleardevice();
+/*	ifstream fin;
+	fin.open("flightdetails1.dat",ios::binary);
+	while((fin.read((char*)&c,sizeof(c))))
+	{       */
+	char ch;
+	ch=75;
+	do
+	{
+		cleardevice();
+		setcolor(WHITE);
+		settextstyle(8,0,2);
+		outtextxy(0,435,"(Press < or > to show more details)");
+		outtextxy(390,435,"(Press ESC to go back)");
+		if(ch==75)
+			{
+				setcolor(YELLOW);
+				rectangle(0,10,630,80);
+				rectangle(0,80,150,430);
+				rectangle(0,80,250,430);
+				rectangle(0,80,350,430);
+				rectangle(0,80,410,430);
+				rectangle(0,80,500,430);
+				rectangle(0,80,630,430);
+				line(0,110,630,110);				settextstyle(10,0,4);
+				outtextxy(130,10,"FLIGHT RECORDS");
+				settextstyle(3,0,1);
+				outtextxy(50,82,"Name");
+				outtextxy(173,82,"From");
+				outtextxy(280,82,"To");
+				outtextxy(355,82,"Seats");
+				outtextxy(430,82,"Class");
+				outtextxy(540,82,"Trip");
+				for(int i=0,y=9;i<n;i++,y+=2)
+				{
+					gotoxy(4,y);
+					cout<<c.name;
+					gotoxy(22,y);
+					cout<<c.depart;
+					gotoxy(34,y);
+					cout<<c.arrive;
+					gotoxy(48,y);
+					cout<<c.no_of_seats;
+					gotoxy(54,y);
+					cout<<c.class1;
+					gotoxy(68,y);
+					if(c.type_trip=='a')
+					cout<<"One Way";
+					else
+					cout<<"Round Trip";
+				}
+		}
+	if(ch==77)
+		{
+					setcolor(YELLOW);
+					rectangle(0,10,630,80);
+					rectangle(0,80,150,430);
+					rectangle(0,80,250,430);
+					rectangle(0,80,350,430);
+					rectangle(0,80,410,430);
+					rectangle(0,80,525,430);
+					rectangle(0,80,630,430);
+					line(0,110,630,110);
+					settextstyle(10,0,4);
+					outtextxy(130,10,"FLIGHT RECORDS");
+					settextstyle(3,0,1);
+					outtextxy(50,82,"Name");
+					outtextxy(173,82,"From");
+					outtextxy(280,82,"To");
+					outtextxy(355,82,"Seats");
+					outtextxy(430,82,"Departure");
+					outtextxy(540,82,"Arrival");
+		for(int i=0,y=9;i<n;i++,y+=2)
+			{
+				gotoxy(4,y);
+				cout<<c.name;
+				gotoxy(22,y);
+				cout<<c.depart;
+				gotoxy(34,y);
+				cout<<c.arrive;
+				gotoxy(48,y);
+				cout<<c.no_of_seats;
+			 }
+			for(i=0,y=9;i<n;i++,y+=2)
+			{
+				gotoxy(54,y);
+				cout<<c.Train_date.d;
+				cout<<"/";
+				cout<<c.Train_date.m;
+				cout<<"/";
+				cout<<c.Train_date.y;
+				gotoxy(68,y);
+				cout<<c.Train_date1.d;
+				cout<<"/";
+				cout<<c.Train_date1.m;
+				cout<<"/";
+				cout<<c.Train_date1.y;
+			}
+		}
+	ch=getch();
+	}while(ch!=27&&ch!=13);
+}
+
+void printbill()
+{
+	cleardevice();
+	setcolor(YELLOW);
+	rectangle(0,0,getmaxx(),getmaxy());
+	rectangle(0,80,getmaxx(),120);
+	rectangle(0,120,getmaxx(),155);
+	rectangle(0,120,120,220);
+	rectangle(0,120,220,220);
+	rectangle(0,120,320,220);
+	rectangle(0,120,420,220);
+	rectangle(0,120,520,220);
+	rectangle(0,120,getmaxx(),220);
+	rectangle(0,220,160,300);
+	rectangle(0,220,280,300);
+	rectangle(0,220,400,300);
+	rectangle(0,220,520,300);
+	rectangle(0,220,getmaxx(),300);
+	rectangle(0,220,getmaxx(),250);
+	rectangle(0,300,280,getmaxy());
+	rectangle(0,300,380,getmaxy());
+	rectangle(0,300,380,330);
+	settextstyle(8,0,3);
+	outtextxy(10,10,"Gomyway");
+	gotoxy(2,4);
+	cout<<"E-mail: gomyway1234@gmail.com";
+	gotoxy(2,5);
+	cout<<"Help.No: 011-47506511";
+	gotoxy(2,7);
+	cout<<"YOUR TICKET-ITINERARY";
+	gotoxy(6,9);
+	cout<<"FLIGHT";
+	gotoxy(2,11);
+	cout<<c.flight_name;
+	long price,totprice;
+	if(strcmp(c.flight_name,"INDIGO AIRLIINES")==0)
+		price=2500;
+	else if(strcmp(c.flight_name,"SPICEJET")==0)
+		price=2300;
+	else if(strcmp(c.flight_name,"AIRINDIA")==0)
+		price=2450;
+	else if(strcmp(c.flight_name,"JET AIRWAYS")==0)
+		price=2925;
+	else if(strcmp(c.flight_name,"INDIAN AIRWAYS")==0)
+		price=3000;
+	price=price*c.no_of_seats;
+	if(strcmpi(c.class1,"Business")==0||strcmpi(c.class1,"business")==0)
+	price=price+2450;
+	else
+	{
+	price=price+0;
+	}
+	totprice=price+price*8.0/100;
+	totprice=price+700;
+	gotoxy(45,7);
+	cout<<"YOUR BOOKING NUMBER: ";
+	rectangle(515,90,615,114);
+	char ticket_no[10];
+	randomize();
+	int i,j;
+		for(int t=1; t<=1; t++)
+		{
+			j=random(10);
+			gotoxy(68,7);             //generats random ticket no.
+			cout<<q[j].ticket_no;
+		}
+	gotoxy(20,9);
+	cout<<"Type";
+	gotoxy(17,11);
+		if(c.type_trip=='a')
+		cout<<"One Way";
+	else
+		cout<<"Round Trip";
+	gotoxy(33,9);
+	cout<<"From";
+	gotoxy(32,11);
+	cout<<c.depart;
+	gotoxy(46,9);
+	cout<<"To";
+	gotoxy(44,11);
+	cout<<c.arrive;
+	gotoxy(5,15);
+	cout<<"Customer Name";
+	gotoxy(5,17);
+	cout<<c.name;
+	gotoxy(25,15);
+	cout<<"Phone.No";
+	gotoxy(23,17);
+	cout<<c.phone_no;
+	gotoxy(40,15);
+	cout<<"Address";
+	gotoxy(39,17);
+	cout<<c.house_no;
+	gotoxy(37,18);
+	cout<<c.locality;
+	gotoxy(44,17);
+	cout<<c.city;
+	gotoxy(54,15);
+	cout<<"Passengers";
+	gotoxy(57,17);
+	cout<<c.no_of_seats;
+	gotoxy(70,15);
+	cout<<"Pincode";
+	gotoxy(67,17);
+	cout<<c.pin_code;
+	gotoxy(2,20);
+	cout<<"Purchase Description";
+	gotoxy(2,22);
+	cout<<"Fair";
+	gotoxy(37,22);
+	cout<<"Rs."<<price;
+	gotoxy(2,23);
+	cout<<"Airport Improvement Fee";
+	gotoxy(37,23);
+	cout<<"Rs.300";
+	gotoxy(2,24);
+	cout<<"Security Duty";
+	gotoxy(37,24);
+	cout<<"Rs.400";
+	gotoxy(2,25);
+	cout<<"CGST & ";
+	gotoxy(9,25);
+	cout<<"SGST";
+	gotoxy(37,25);
+	cout<<"8%";
+	line(0,450,380,450);
+	settextstyle(8,0,3);
+	outtextxy(5,447,"GRAND TOTAL");
+/*	gotoxy(10,10);
+	cout<<totprice; */
+	char *s;
+	ltoa(totprice,s,10);
+	setcolor(WHITE);
+	outtextxy(280,447,s);
+	gotoxy(37,20);
+	cout<<"Price";
+	gotoxy(50,20);
+	cout<<"Ticket is non endorsable,non-";
+	gotoxy(50,21);
+	cout<<"refundable.Changes are allowed";
+	gotoxy(50,22);
+	cout<<"subject to availability,no";
+	gotoxy(50,23);
+	cout<<"later than 2 hours before";
+	gotoxy(50,24);
+	cout<<"departure.Please read all";
+	gotoxy(50,25);
+	cout<<"fare instructions!";
+	settextstyle(8,0,1);
+	outtextxy(400,447,"Have a pleasant flight!");
+	gotoxy(60,4);
+	cout<<"Date: ";
+	date1();
+	gotoxy(61,5);
+	cout<<"Day: ";
+
+	 {
+	time_t t;
+	time(&t);
+	char old[3];
+
+	strcpy(old, ctime(&t));
+	for(int i = 0; i < 3; i++)
+		cout << old[i];
+	}
+
+	gotoxy(60,3);
+	cout<<"Time: ";
+	time();
+	gotoxy(55,9);
+	cout<<"Departure";
+	gotoxy(58,11);
+	cout<<c.time1;
+	gotoxy(70,9);
+	cout<<"Arrival";
+	gotoxy(73,11);
+	cout<<c.time2;
+
+	getch();
+	}
+
+void day() {
+	time_t t;
+	time(&t);
+	char old[3];
+
+	strcpy(old, ctime(&t));
+	for(int i = 0; i < 3; i++)
+		cout << old[i];
+}
+
+void time()
+{
+   time_t t;
+
+   time(&t);
+
+   char n[8];
+
+   int flag = 0;
+   char old[40];
+   strcpy(old, ctime(&t));
+
+   for(int i = 0; i < strlen(old); i++) {
+	if(old[i]== ':') {
+		i -= 2;
+		for(int j = 0; j < 8; j++)
+			n[j] = old[i+j];
+		flag = 1;
+	}
+	if(flag) break;
+   }
+   for(i = 0; i < 8; i++)
+	cout << n[i];
+}
+void main()
+{
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"c:\\tc\\bgi");
+	cout<<"press any button to start the programme";
+	getch();
+	place();
+	select();
+	getch();
+	closegraph();
+}
+
+
